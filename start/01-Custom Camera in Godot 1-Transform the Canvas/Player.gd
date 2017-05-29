@@ -8,6 +8,8 @@ const MAX_SPEED = 400
 
 enum Direction {TOP, RIGHT, DOWN, LEFT}
 
+signal move
+
 func _ready():
 	set_fixed_process(true)
 
@@ -30,6 +32,8 @@ func _fixed_process(delta):
 	
 	velocity = speed * direction * delta
 	move(velocity)
+	if is_moving:
+		emit_signal("move");
 
 
 func turn_towards(_direction):
