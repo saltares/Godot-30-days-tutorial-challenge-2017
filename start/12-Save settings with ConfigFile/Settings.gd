@@ -17,16 +17,26 @@ var _settings = {
 
 
 func _ready():
-    save_settings()
+#    save_settings()
     load_settings()
 
 
 func save_settings():
-	pass
+	for section in _settings.keys():
+		for key in _settings[section].keys():
+			_config_file.set_value(section, key, _settings[section][key])
+
+	_config_file.save(SAVE_PATH)
 
 func load_settings():
-    pass
+	var rc = _config_file.load(SAVE_PATH)
+	if rc != OK:
+		print("Failed loading file. Error code %s" % rc)
+		return []
 
+	for section in _settings.keys():
+		for key in _settings[section].keys():
+			_settings[section][key] = _config_file.get_value(section, key, null)
 
 func get_setting(category, key):
     return _settings[category][key]

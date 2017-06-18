@@ -35,7 +35,7 @@ func _fixed_process(delta):
 			var angle_to_node = rad2deg(acos(dot_product))
 			if angle_to_node < FOV/2:
 				detect_count += 1
-	
+
 	# DRAWING
 	if detect_count > 0:
 		draw_color = color_detected
