@@ -38,5 +38,11 @@ func _fixed_process(delta):
 
 func save():
 	# Compile all the data to save in a dictionary
-	var save_dict = {}
+	var save_dict = {
+		pos = {
+			x = get_pos().x,
+			y = get_pos().y
+		},
+		max_health = max_health
+	}
 	return save_dict
